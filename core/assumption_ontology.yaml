@@ -27,3 +27,9 @@ assumption_classes:
     allowed_values:
       - normality
       - independence
+  data_source:
+    description: "Original source of the data."
+    allowed_values:
+      - GEO
+      - TCGA
+      - ENCODE

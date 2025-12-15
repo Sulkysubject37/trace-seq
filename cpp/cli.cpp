@@ -55,7 +55,7 @@ fs::path get_project_root_path(const char* argv0) {
 
     fs::path current_dir = fs::canonical(executable_path).parent_path();
     while (!current_dir.empty() && current_dir != current_dir.parent_path()) {
-        if (fs::exists(current_dir / "prompt.md")) {
+        if (fs::exists(current_dir / "cpp" / "CMakeLists.txt")) {
             return current_dir;
         }
         current_dir = current_dir.parent_path();
