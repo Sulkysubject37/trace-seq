@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(traceseq CXX)
+link_directories(/opt/homebrew/lib)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -32,7 +33,7 @@ target_link_libraries(traceseq
 # Add tests
 enable_testing()
 
-add_executable(tests tests/test_runner.cpp hashing.cpp tracer.cpp)
+add_executable(tests tests/test_runner.cpp hashing.cpp tracer.cpp lineage.cpp)
 target_include_directories(tests PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(tests
@@ -47,3 +48,19 @@ target_link_libraries(tests
 )
 
 add_test(NAME unit_tests COMMAND tests)
+
+# Python bindings
+find_package(pybind11 REQUIRED)
+find_package(nlohmann_json REQUIRED)
+
+pybind11_add_module(traceseq_py bindings.cpp tracer.cpp lineage.cpp hashing.cpp)
+
+target_link_libraries(traceseq_py
+    PRIVATE
+    yaml-cpp
+    nlohmann_json::nlohmann_json
+    OpenSSL::SSL
+    OpenSSL::Crypto
+    fmt::fmt
+    ${UUID_LIBRARIES}
+)
