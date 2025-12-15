@@ -14,7 +14,8 @@ examples/rnaseq/GSE43335_RAW.tar
 examples/rnaseq/GSE43335_class_pri.txt.gz
 examples/rnaseq/GSE43335_smrna_locus.txt.gz
 *.o
-*.so
+
+
 traceseq
 tests
 .traceseq
