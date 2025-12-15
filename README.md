@@ -197,6 +197,16 @@ file.remove(test_file)
 └── README.md                    # This README file
 ```
 
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+## Citation
+
+If you use TRACE-SEQ in your research, please cite:
+
+MD. Arshad, Department of Computer Science, Jamia Millia Islamia
+
 ## Contributing
 
 We welcome contributions to TRACE-SEQ! Please see our `CONTRIBUTING.md` (to be added) for more details on how to get involved.
