@@ -19,7 +19,16 @@ namespace fs = std::filesystem;
 nlohmann::json load_index(const fs::path& project_root);
 std::vector<TraceNode> resolve_lineage(const std::string& trace_id, const fs::path& project_root);
 
-// Function to get the project root path
+/**
+ * @brief Retrieves the root path of the project.
+ *
+ * This function attempts to determine the project's root directory by
+ * locating a "prompt.md" file, traversing up from the executable's location.
+ * It handles platform-specific methods for obtaining the executable's path.
+ *
+ * @param argv0 The first command-line argument (path to the executable).
+ * @return A `std::filesystem::path` object representing the project root.
+ */
 fs::path get_project_root_path(const char* argv0) {
     fs::path executable_path;
     // Get the path to the executable
@@ -58,9 +67,32 @@ fs::path get_project_root_path(const char* argv0) {
 
 
 // Forward declarations
+/**
+ * @brief Annotates a file with a new trace node.
+ * @param result The parsed command-line arguments.
+ * @param project_root The root path of the project.
+ */
 void annotate(const cxxopts::ParseResult& result, const fs::path& project_root);
+
+/**
+ * @brief Explains the provenance of a file.
+ * @param result The parsed command-line arguments.
+ * @param project_root The root path of the project.
+ */
 void explain(const cxxopts::ParseResult& result, const fs::path& project_root);
+
+/**
+ * @brief Diffs the provenance of two files.
+ * @param result The parsed command-line arguments.
+ * @param project_root The root path of the project.
+ */
 void diff(const cxxopts::ParseResult& result, const fs::path& project_root);
+
+/**
+ * @brief Validates the provenance of a file.
+ * @param result The parsed command-line arguments.
+ * @param project_root The root path of the project.
+ */
 void validate(const cxxopts::ParseResult& result, const fs::path& project_root);
 
 int main(int argc, char** argv) {
@@ -109,6 +141,15 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+/**
+ * @brief Implements the annotate command.
+ *
+ * Annotates a specified file with a new trace node, capturing details
+ * about the operation, method, assumptions, and parent lineage.
+ *
+ * @param result The parsed command-line arguments.
+ * @param project_root The root path of the project.
+ */
 void annotate(const cxxopts::ParseResult& result, const fs::path& project_root) {
     std::string filepath = result["annotate"].as<std::string>();
     std::string operation_class = result["operation"].as<std::string>();
@@ -179,6 +220,15 @@ void annotate(const cxxopts::ParseResult& result, const fs::path& project_root) 
     std::cout << "Successfully annotated " << filepath << " with trace ID: " << node.trace_id << std::endl;
 }
 
+/**
+ * @brief Implements the explain command.
+ *
+ * Explains the full provenance lineage of a specified file by
+ * traversing its trace nodes.
+ *
+ * @param result The parsed command-line arguments.
+ * @param project_root The root path of the project.
+ */
 void explain(const cxxopts::ParseResult& result, const fs::path& project_root) {
     std::string filepath = result["explain"].as<std::string>();
 
@@ -229,6 +279,15 @@ void explain(const cxxopts::ParseResult& result, const fs::path& project_root) {
     std::cout << "----------------------------------------" << std::endl;
 }
 
+/**
+ * @brief Implements the diff command.
+ *
+ * Compares the provenance lineages of two specified files and highlights
+ * any differences in their operational history.
+ *
+ * @param result The parsed command-line arguments.
+ * @param project_root The root path of the project.
+ */
 void diff(const cxxopts::ParseResult& result, const fs::path& project_root) {
     std::vector<std::string> files = result["diff"].as<std::vector<std::string>>();
     if (files.size() != 2) {
@@ -311,6 +370,15 @@ void diff(const cxxopts::ParseResult& result, const fs::path& project_root) {
     std::cout << "----------------------------------------" << std::endl;
 }
 
+/**
+ * @brief Implements the validate command.
+ *
+ * Validates the provenance chain of a specified file against the defined
+ * ontologies and checks for lineage integrity.
+ *
+ * @param result The parsed command-line arguments.
+ * @param project_root The root path of the project.
+ */
 void validate(const cxxopts::ParseResult& result, const fs::path& project_root) {
     std::string filepath = result["validate"].as<std::string>();
 

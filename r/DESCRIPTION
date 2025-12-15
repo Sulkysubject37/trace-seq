@@ -1,0 +1,18 @@
+Package: traceseq
+Type: Package
+Title: Trace-Seq R Interface
+Version: 0.1.0
+Authors@R: person("MD. Arshad", email = "arshad10867c@gmail.com", role = c("aut", "cre"))
+Description: R interface for the Trace-Seq semantic provenance tracking system.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports:
+    yaml,
+    jsonlite,
+    whisker,
+    rprojroot,
+    uuid
+Suggests:
+    testthat,
+    knitr
