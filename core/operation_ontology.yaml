@@ -1,0 +1,57 @@
+operation_classes:
+  normalization:
+    description: "Rescaling data to a common scale."
+    allowed_parameters:
+      - method
+      - scale_factor
+    semantic_effect: "Changes the distribution of values, but preserves relative relationships."
+    valid_transitions:
+      quantitative_matrix: quantitative_matrix
+  filtering:
+    description: "Removing data points based on some criteria."
+    allowed_parameters:
+      - threshold
+      - metric
+    semantic_effect: "Reduces the size of the dataset by removing low-quality or irrelevant data."
+    valid_transitions:
+      quantitative_matrix: quantitative_matrix
+      genomic_interval: genomic_interval
+  transformation:
+    description: "Applying a mathematical function to the data."
+    allowed_parameters:
+      - function
+    semantic_effect: "Changes the scale and distribution of the data to meet the assumptions of a statistical model."
+    valid_transitions:
+      quantitative_matrix: quantitative_matrix
+  aggregation:
+    description: "Summarizing data."
+    allowed_parameters:
+      - method
+      - group_by
+    semantic_effect: "Reduces the dimensionality of the data by combining data points into a summary statistic."
+    valid_transitions:
+      quantitative_matrix: quantitative_matrix
+  inference:
+    description: "Inferring biological meaning from the data."
+    allowed_parameters:
+      - model
+      - p_value_threshold
+    semantic_effect: "Generates new insights or hypotheses from the data."
+    valid_transitions:
+      quantitative_matrix: model_output
+  annotation:
+    description: "Adding metadata to the data."
+    allowed_parameters:
+      - database
+      - version
+    semantic_effect: "Enriches the data with additional information from external sources."
+    valid_transitions:
+      genomic_interval: genomic_interval
+  selection:
+    description: "Selecting a subset of data."
+    allowed_parameters:
+      - criteria
+    semantic_effect: "Isolates a specific portion of the data for further analysis."
+    valid_transitions:
+      quantitative_matrix: quantitative_matrix
+      network: network

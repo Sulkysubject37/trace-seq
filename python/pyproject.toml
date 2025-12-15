@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "traceseq"
+version = "0.1.0"
+description = "Minimal Semantic Provenance Tracking for Bioinformatics Pipelines"
+authors = ["Jules"]
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+pydantic = "^1.9.0"
+pyyaml = "^6.0"
+click = "^8.0.3"
+rich = "^13.0.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"

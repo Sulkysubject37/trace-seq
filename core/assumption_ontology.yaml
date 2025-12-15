@@ -1,0 +1,29 @@
+assumption_classes:
+  library_preparation:
+    description: "Assumptions about the experimental protocol used to generate the sequencing library."
+    allowed_values:
+      - polyA_selected
+      - rRNA_depleted
+      - single_cell
+  batch_correction:
+    description: "Assumptions about how batch effects were handled."
+    allowed_values:
+      - combat
+      - limma
+      - none
+  reference_version:
+    description: "Assumptions about the reference genome or transcriptome version used."
+    allowed_values:
+      - hg38
+      - grch38
+      - mm10
+  sequencing_depth:
+    description: "Assumptions about the depth of sequencing."
+    allowed_values:
+      - deep
+      - shallow
+  model_assumption:
+    description: "Assumptions made by a statistical model."
+    allowed_values:
+      - normality
+      - independence

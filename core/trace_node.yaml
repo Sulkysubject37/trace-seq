@@ -1,0 +1,112 @@
+# Canonical Trace Node Schema
+trace_id:
+  type: string
+  format: uuid
+  description: "Unique identifier for this trace node."
+parent:
+  type: string
+  format: uuid
+  nullable: true
+  description: "The UUID of the parent trace node. Null for the root node."
+timestamp:
+  type: string
+  format: date-time
+  description: "ISO8601 timestamp of when the trace was created."
+data_class:
+  type: string
+  enum:
+    - quantitative_matrix
+    - network
+    - genomic_interval
+    - model_output
+  description: "The class of the data at this stage."
+operation:
+  type: object
+  properties:
+    class:
+      type: string
+      enum:
+        - normalization
+        - filtering
+        - transformation
+        - aggregation
+        - inference
+        - annotation
+        - selection
+      description: "The class of the operation performed."
+    method:
+      type: string
+      description: "The specific method used for the operation."
+    parameters:
+      type: object
+      description: "A dictionary of parameters used for the operation."
+  required:
+    - class
+    - method
+assumptions:
+  type: array
+  items:
+    type: string
+  description: "A list of assumption IDs that apply to this trace."
+input:
+  type: object
+  properties:
+    shape:
+      type: string
+      description: "The dimensions or shape of the input data."
+    checksum:
+      type: string
+      format: sha256
+      description: "The SHA256 checksum of the input data file."
+  required:
+    - checksum
+output:
+  type: object
+  properties:
+    data_class:
+      type: string
+      description: "The data class of the output."
+    unit:
+      type: string
+      description: "The unit of the output data."
+    checksum:
+      type: string
+      format: sha256
+      description: "The SHA256 checksum of the output data file."
+  required:
+    - data_class
+    - checksum
+environment:
+  type: object
+  properties:
+    language:
+      type: string
+      enum:
+        - cpp
+        - python
+        - r
+      description: "The language of the tool used."
+    tool:
+      type: string
+      description: "The name of the tool used."
+    version:
+      type: string
+      description: "The version of the tool used."
+  required:
+    - language
+    - tool
+    - version
+ontology_version:
+  type: string
+  description: "The version of the ontology used."
+required:
+  - trace_id
+  - parent
+  - timestamp
+  - data_class
+  - operation
+  - assumptions
+  - input
+  - output
+  - environment
+  - ontology_version
