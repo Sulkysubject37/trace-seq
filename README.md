@@ -206,6 +206,7 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 If you use TRACE-SEQ in your research, please cite:
 
 MD. Arshad, Department of Computer Science, Jamia Millia Islamia
+https://doi.org/10.5281/zenodo.17939628
 
 ## Contributing
 
