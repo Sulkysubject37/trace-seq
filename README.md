@@ -6,15 +6,26 @@ TRACE-SEQ is a system designed for tracking the semantic provenance of data with
 
 ## Key Features
 
+TRACE-SEQ's design is driven by the principle of **Semantic Provenance**, capturing the *meaning* behind data transformations. This core concept enables several powerful features:
+
 *   **Fixed, Extensible Ontology:** All operations and assumptions are defined within a clear, extensible ontology. This ensures consistency in provenance records and allows for standardized semantic interpretation across different analyses.
-*   **State-Based Provenance via Cryptographic Hashes:** The semantic state of a dataset at each step is recorded and linked using cryptographic hashes (SHA256). This creates an immutable and verifiable lineage, allowing users to trace data origins and transformations with high confidence.
+*   **State-Based Provenance via Cryptographic Hashes:** The semantic state of a dataset at each step is recorded and linked using cryptographic hashes (SHA256). This creates an immutable and verifiable lineage, allowing users to trace data origins and transformations with high confidence, directly contributing to **Reproducibility**.
 *   **Cross-Language Integration:** TRACE-SEQ's core logic is implemented in high-performance C++, providing robust and efficient provenance tracking. This core is exposed through user-friendly interfaces in Python and R, catering to the diverse ecosystem of bioinformatics tools and users.
-*   **Human-Readable Provenance Records:** Provenance information is stored in human-readable YAML files, making it easy to inspect, audit, and understand the history of any data artifact without specialized tools.
-*   **Detailed Lineage Reconstruction:** The system can reconstruct the complete lineage of any derived data file, showing all operations, assumptions, and parent-child relationships in the transformation chain.
+*   **Human-Readable Provenance Records:** Provenance information is stored in human-readable YAML files, making it easy to inspect, audit, and understand the history of any data artifact without specialized tools, thereby enhancing **Auditability**.
+*   **Detailed Lineage Reconstruction:** The system can reconstruct the complete lineage of any derived data file, showing all operations, assumptions, and parent-child relationships in the transformation chain. This enables clear understanding of data derivation and facilitates **Semantic Comparability** between datasets.
 
 ## Getting Started
 
 To get TRACE-SEQ up and running on your system, follow these steps:
+
+### Documentation
+
+For more detailed information on TRACE-SEQ's concepts, ontology, and reproducibility aspects, please refer to the `docs` directory:
+
+*   [`docs/concepts.md`](docs/concepts.md): Deep dive into Semantic Provenance and why TRACE-SEQ is needed.
+*   [`docs/ontology.md`](docs/ontology.md): Explanation of TRACE-SEQ's fixed ontology for operations and assumptions.
+*   [`docs/reproducibility.md`](docs/reproducibility.md): How TRACE-SEQ enhances scientific reproducibility.
+
 
 ### 1. Clone the Repository
 
